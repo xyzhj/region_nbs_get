@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zhj.region_nbs.mapper.RegionMapper">
+    <select id="getRegionById" resultType="zhj.region_nbs.entity.Region">
+        select * form 't_base_region' where 'id'=#{id}
+    </select>
+</mapper>
