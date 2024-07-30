@@ -1,4 +1,4 @@
-package zhj.region_nbs;
+package zhj.region_nbs_get;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

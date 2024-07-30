@@ -1,8 +1,7 @@
-package zhj.region_nbs.mapper;
+package zhj.region_nbs_get.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
-import zhj.region_nbs.entity.Region;
+import zhj.region_nbs_get.entity.Region;
 
 public interface RegionMapper extends BaseMapper<Region> {
 

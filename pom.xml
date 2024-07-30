@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>zhj</groupId>
     <artifactId>region_nbs_get</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>region_nbs</name>
-    <description>region_nbs</description>
+    <version>0.0.1</version>
+    <name>region_nbs_get</name>
+    <description>region_nbs_get</description>
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,6 +15,7 @@
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <jsoup.version>1.17.2</jsoup.version>
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
+        <druid.version>1.2.23</druid.version>
     </properties>
     <dependencies>
         <dependency>
@@ -56,13 +57,9 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.2.23</version>
+            <version>${druid.version}</version>
         </dependency>
 
     </dependencies>
@@ -95,8 +92,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>zhj.region_nbs.RegionNbsApplication</mainClass>
-                    <skip>true</skip>
+                    <mainClass>zhj.region_nbs_get.RegionNbsApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

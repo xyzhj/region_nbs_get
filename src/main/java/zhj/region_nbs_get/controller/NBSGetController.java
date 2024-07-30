@@ -1,11 +1,14 @@
-package zhj.region_nbs.controller;
+package zhj.region_nbs_get.controller;
 
+import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zhj.region_nbs.service.NBSGetService;
+import zhj.region_nbs_get.service.NBSGetService;
+import zhj.region_nbs_get.entity.*;
+
+import java.io.IOException;
 
 @RestController
 public class NBSGetController {
@@ -17,7 +20,10 @@ public class NBSGetController {
     private String rootURI;
 
     @RequestMapping("/get")
-    public void get() {
-        nbsGetService.getDoc(rootURI);
+    public Region get() throws IOException {
+        Document doc = nbsGetService.getDoc(rootURI);
+        Region r = new Region();
+        r.rn = doc.title();
+        return r;
     }
 }
