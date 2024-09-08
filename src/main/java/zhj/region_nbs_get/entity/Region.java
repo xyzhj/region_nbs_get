@@ -1,11 +1,15 @@
 package zhj.region_nbs_get.entity;
 
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+
+//@Component("region")
 @TableName
+@Data
 public class Region {
 
     @TableId

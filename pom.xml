@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>zhj</groupId>
     <artifactId>region_nbs_get</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>region_nbs_get</name>
     <description>region_nbs_get</description>
     <properties>
@@ -16,6 +16,7 @@
         <jsoup.version>1.17.2</jsoup.version>
         <mybatis-plus.version>3.5.7</mybatis-plus.version>
         <druid.version>1.2.23</druid.version>
+        <fastjson2.version>2.0.52</fastjson2.version>
     </properties>
     <dependencies>
         <dependency>
@@ -61,7 +62,17 @@
             <artifactId>druid</artifactId>
             <version>${druid.version}</version>
         </dependency>
+        <!--引入Lombok依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson2.version}</version>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
