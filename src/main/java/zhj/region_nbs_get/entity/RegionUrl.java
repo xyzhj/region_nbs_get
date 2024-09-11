@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-//@Component("regionurl")
-@TableName
+@TableName("t_base_region_url")
 @Data
 public class RegionUrl {
     @TableId

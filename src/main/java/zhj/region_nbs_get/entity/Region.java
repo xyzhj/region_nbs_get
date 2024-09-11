@@ -7,8 +7,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-//@Component("region")
-@TableName
+@TableName("t_base_region")
 @Data
 public class Region {
 

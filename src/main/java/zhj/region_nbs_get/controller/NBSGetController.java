@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import zhj.region_nbs_get.entity.Region;
+import zhj.region_nbs_get.entity.RegionUrl;
 import zhj.region_nbs_get.entity.Uid;
 import zhj.region_nbs_get.mapper.RegionMapper;
+import zhj.region_nbs_get.mapper.RegionUrlMapper;
+import zhj.region_nbs_get.service.HYPinyinHelper;
 import zhj.region_nbs_get.service.NBSGetService;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @RestController
@@ -24,6 +28,8 @@ public class NBSGetController {
     private NBSGetService nbsGetService;
 
     private RegionMapper regionMapper;
+
+    private RegionUrlMapper regionUrlMapper;
 
     private RestTemplate restTemplate;
 
@@ -38,7 +44,9 @@ public class NBSGetController {
     @Value("${http.UIDURI}")
     private String UidUri;
 
-    public NBSGetController(RestTemplate restTemplate) {
+    public NBSGetController(RegionMapper regionMapper, RegionUrlMapper regionUrlMapper, RestTemplate restTemplate) {
+        this.regionMapper = regionMapper;
+        this.regionUrlMapper = regionUrlMapper;
         this.restTemplate = restTemplate;
     }
 
@@ -54,11 +62,12 @@ public class NBSGetController {
             long newUid = getUid();
             r.setId(newUid);
             r.setRn(content.text());
-            r.setRh("");
+            r.setRh(HYPinyinHelper.getFirstSpell(r.rn));
             r.setRsn("");
-            r.setRh("");
-            r.setFn("");
-            r.setRc(content.attr("href").substring(0, 2) + "0000000000");
+            r.setRsh("");
+            r.setFn(r.rn);
+            String Url = content.attr("href");
+            r.setRc(Url.substring(0, 2) + "0000000000");
             r.setRt(1);
             r.setRtt("");
             r.setR1(newUid);
@@ -66,9 +75,16 @@ public class NBSGetController {
             r.setR3(0L);
             r.setR4(0L);
             r.setRp(1);
-            r.setRt(1);
+            r.setSt(1);
+            r.setCt(LocalDateTime.now());
+            r.setUt(LocalDateTime.now());
             System.out.println(JSON.toJSONString(r));
-//            regionMapper.insert(r);
+            RegionUrl ru = new RegionUrl();
+            ru.setId(newUid);
+            ru.setUrl(URIpre+Url);
+            System.out.println(JSON.toJSONString(ru));
+            regionMapper.insert(r);
+            regionUrlMapper.insert(ru);
         }
         //return r;
     }
