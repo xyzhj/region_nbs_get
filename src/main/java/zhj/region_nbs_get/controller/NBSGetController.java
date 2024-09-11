@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import zhj.region_nbs_get.entity.Region;
 import zhj.region_nbs_get.entity.Uid;
 import zhj.region_nbs_get.mapper.RegionMapper;
+import zhj.region_nbs_get.service.HYPinyinHelper;
 import zhj.region_nbs_get.service.NBSGetService;
 
 import java.io.IOException;
@@ -54,10 +55,10 @@ public class NBSGetController {
             long newUid = getUid();
             r.setId(newUid);
             r.setRn(content.text());
-            r.setRh("");
+            r.setRh(HYPinyinHelper.getFirstSpell(r.rn));
             r.setRsn("");
-            r.setRh("");
-            r.setFn("");
+            r.setRsh("");
+            r.setFn(r.rn);
             r.setRc(content.attr("href").substring(0, 2) + "0000000000");
             r.setRt(1);
             r.setRtt("");
