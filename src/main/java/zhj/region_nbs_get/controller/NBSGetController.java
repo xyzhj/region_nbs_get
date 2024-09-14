@@ -19,6 +19,8 @@ import zhj.region_nbs_get.service.NBSGetService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -56,7 +58,8 @@ public class NBSGetController {
 
         Elements elements = doc.getElementsByClass("provincetable");
         Elements contents = Objects.requireNonNull(elements.first()).getElementsByTag("a");
-//        List<Region> regions = new ArrayList<>();
+        List<Region> regions = new ArrayList<>();
+        List<RegionUrl> regionUrls = new ArrayList<>();
         for (Element content : contents) {
             Region r = new Region();
             long newUid = getUid();
@@ -78,15 +81,16 @@ public class NBSGetController {
             r.setSt(1);
             r.setCt(LocalDateTime.now());
             r.setUt(LocalDateTime.now());
+            regions.add(r);
             System.out.println(JSON.toJSONString(r));
             RegionUrl ru = new RegionUrl();
             ru.setId(newUid);
             ru.setUrl(URIpre+Url);
+            regionUrls.add(ru);
             System.out.println(JSON.toJSONString(ru));
-            regionMapper.insert(r);
-            regionUrlMapper.insert(ru);
         }
-        //return r;
+        regionMapper.insert(regions);
+        regionUrlMapper.insert(regionUrls);
     }
 
     public Long getUid() {
