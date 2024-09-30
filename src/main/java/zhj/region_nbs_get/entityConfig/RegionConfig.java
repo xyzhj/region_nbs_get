@@ -26,8 +26,6 @@ public class RegionConfig {
         region.setR4(r4);
         region.setRp(rp);
         region.setSt(1);
-        region.setCt(LocalDateTime.now());
-        region.setUt(LocalDateTime.now());
         return region;
     }
 }
